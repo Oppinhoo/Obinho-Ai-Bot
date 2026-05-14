@@ -44,9 +44,9 @@ async def unknown_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
     if not await anti_spam_check(update):
         await update.message.reply_text("⚠️ Please slow down. Use the menu buttons.")
         return
-    from obinho_bot.database.db import get_user_language
-    from obinho_bot.locales.strings import t
-    from obinho_bot.utils.keyboards import main_menu_keyboard
+    from database.db import get_user_language
+    from locales.strings import t
+    from utils.keyboards import main_menu_keyboard
     user = update.effective_user
     lang = await get_user_language(user.id)
     await update.message.reply_text(
