@@ -4,17 +4,17 @@ from telegram.ext import (
     Application, CommandHandler, CallbackQueryHandler,
     MessageHandler, filters, ContextTypes,
 )
-from obinho_bot.config import BOT_TOKEN, WORKERS_GROUP_ID
-from obinho_bot.database.db import init_db
-from obinho_bot.handlers.start import (
+from config import BOT_TOKEN, WORKERS_GROUP_ID
+from database.db import init_db
+from handlers.start import (
     start_handler, help_handler, clear_handler,
     contact_command, services_command,
 )
-from obinho_bot.handlers.admin import (
+from handlers.admin import (
     admin_command, analytics_command, admin_callback, testgroup_command
 )
-from obinho_bot.handlers.callbacks import menu_callback
-from obinho_bot.handlers.order import order_conversation_handler
+from handlers.callbacks import menu_callback
+from handlers.order import order_conversation_handler
 
 logging.basicConfig(
     format="%(asctime)s — %(name)s — %(levelname)s — %(message)s",
