@@ -5,16 +5,16 @@ from telegram.ext import (
     MessageHandler, filters, ContextTypes,
 )
 from config import BOT_TOKEN, WORKERS_GROUP_ID
-from database.db import init_db
-from handlers.start import (
+from db import init_db
+from start import (
     start_handler, help_handler, clear_handler,
     contact_command, services_command,
 )
-from handlers.admin import (
+from admin import (
     admin_command, analytics_command, admin_callback, testgroup_command
 )
-from handlers.callbacks import menu_callback
-from handlers.order import order_conversation_handler
+from callbacks import menu_callback
+from order import order_conversation_handler
 
 logging.basicConfig(
     format="%(asctime)s — %(name)s — %(levelname)s — %(message)s",
@@ -44,9 +44,9 @@ async def unknown_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
     if not await anti_spam_check(update):
         await update.message.reply_text("⚠️ Please slow down. Use the menu buttons.")
         return
-    from database.db import get_user_language
-    from locales.strings import t
-    from utils.keyboards import main_menu_keyboard
+    from db import get_user_language
+    from strings import t
+    from keyboards import main_menu_keyboard
     user = update.effective_user
     lang = await get_user_language(user.id)
     await update.message.reply_text(
